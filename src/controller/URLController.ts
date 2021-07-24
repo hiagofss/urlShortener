@@ -35,4 +35,10 @@ export class URLController {
 
 		response.json(url);
 	}
+
+	public async listAll(request: Request, response: Response): Promise<void> {
+		const allUrls = await URLModel.find();
+
+		response.json(allUrls);
+	}
 }

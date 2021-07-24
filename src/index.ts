@@ -1,9 +1,8 @@
 import 'dotenv/config';
 import express from 'express';
 
+import { router } from './routes';
 import { MongoConnection } from './database/MongoConnection';
-
-import { URLController } from './controller/URLController';
 
 const app = express();
 app.use(express.json());
@@ -13,9 +12,7 @@ database.connect();
 
 const port = process.env.PORT || 8080;
 
-const urlController = new URLController();
-app.post('/shorten', urlController.shorten);
-app.get('/:hash', urlController.redirect);
+app.use(router);
 
 app.listen(port, () => {
 	console.log(`API listening in port ${port}`);
