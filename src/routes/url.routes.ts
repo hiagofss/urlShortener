@@ -9,5 +9,6 @@ const urlController = new URLController();
 urlRouter.post('/shorten', urlController.shorten);
 urlRouter.get('/:hash', urlController.redirect);
 urlRouter.get('/', urlController.listAll);
+urlRouter.delete('/:hash', urlController.delete);
 
 export { urlRouter };

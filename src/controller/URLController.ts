@@ -41,4 +41,18 @@ export class URLController {
 
 		response.json(allUrls);
 	}
+
+	public async delete(request: Request, response: Response): Promise<void> {
+		const { hash } = request.params;
+
+		const url = await URLModel.findOne({ hash });
+
+		if (!url) {
+			response.status(400).json({ error: 'URL not found!' });
+		}
+
+		url.delete();
+
+		response.send();
+	}
 }
